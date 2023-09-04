@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+
+        <h1>Background Generator</h1>
+        <div>
+            <p>Current Color:</p>
+            <div id="colorDisplay">#FFFFFF</div>
+        </div>
+        <input type="color" id="colorInput" value="#FFFFFF">
+
+        <button id="generateButton">Generate Random Colors</button>
+    </div>
+
+    <script>
+        const colorDisplay = document.getElementById("colorDisplay");
+        const colorInput = document.getElementById("colorInput");
+        const generateButton = document.getElementById("generateButton");
+
+        function generateRandomColor()
+         {
+            const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+            return randomColor;
+        }
+
+       
+        function updateBackgroundColor() 
+        {
+            const selectedColor = colorInput.value;
+            document.body.style.backgroundColor = selectedColor;
+            colorDisplay.textContent = selectedColor;
+        }
+
+        generateButton.addEventListener("click", () => {
+            const randomColor = generateRandomColor();
+            colorInput.value = randomColor;
+            updateBackgroundColor();
+        });
+
+      
+        colorInput.addEventListener("input", updateBackgroundColor);
+
+     
+        const initialColor = generateRandomColor();
+        colorInput.value = initialColor;
+        updateBackgroundColor();
+        
+    </script>
+</body>
+</html>
